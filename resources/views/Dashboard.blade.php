@@ -29,7 +29,7 @@ $status = [
 
                 <!-- Submenu ke kanan -->
                 <div id="submenu" class="absolute top-16 left-[170px] bg-gray-100 border rounded shadow-md p-2 space-y-2 hidden z-10">
-                    <button class="w-full bg-white border text-left px-4 py-2">HM</button>
+                    <a href="{{ url('/HM') }}" class="w-full block bg-white border text-left px-4 py-2 hover:bg-gray-200">HM</a>
                     <button class="w-full bg-white border text-left px-4 py-2">Service</button>
                     <button class="w-full bg-white border text-left px-4 py-2">Riwayat Mesin</button>
                 </div>
