@@ -21,7 +21,7 @@ for ($i = 3; $i <= 21; $i++) {
         <!-- Header -->
         <div class="bg-gray-200 py-4 mb-6 flex items-center justify-between px-4">
             <!-- Tombol kembali -->
-            <a href="{{ url('/Dashboard') }}" class="text-xl font-bold text-gray-700 hover:text-black">
+            <a href="{{ url('/RiwayatHM') }}" class="text-xl font-bold text-gray-700 hover:text-black">
             <h2 class="text-xl font-semibold text-center flex-grow -ml-6"><</h2>
         </div>
 
