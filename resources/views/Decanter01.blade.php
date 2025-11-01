@@ -1,42 +1,3 @@
-<?php
-session_start();
-
-// Generate token jika belum ada
-if (empty($_SESSION['csrf_token'])) {
-    $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
-}
-
-// Simulasi data awal
-$tanggal = "2025-10-27";
-$hm = "1500";
-$nextService = "1500";
-
-// Tangkap data jika form disubmit
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Validasi token
-    if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
-        die("CSRF token tidak valid.");
-    }
-
-    $tanggal = $_POST['tanggal'];
-    $hm = $_POST['hm'];
-    $nextService = $_POST['next_service'];
-
-    // Simpan ke session (atau file/database jika mau)
-    $_SESSION['riwayat'][] = [
-        'tanggal' => $tanggal,
-        'hm' => $hm
-    ];
-
-    // Hapus token agar tidak bisa reuse
-    unset($_SESSION['csrf_token']);
-
-    // Redirect ke halaman RiwayatHM
-    header('Location: RiwayatHM.php');
-    exit;
-}
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -45,32 +6,32 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-100 font-sans">
-    <div class="min-h-screen p-6">
+    <div class="min-h-screen flex flex-col items-center justify-center p-6">
         <!-- Header -->
-        <div class="bg-gray-200 py-4 mb-6 flex items-center justify-between px-4">
-            <a href="Dashboard.php" class="text-xl font-bold text-gray-700 hover:text-black">←</a>
-            <h2 class="text-xl font-semibold text-center flex-grow -ml-6">HM</h2>
+        <div class="bg-gray-200 py-4 mb-6 w-full max-w-md flex justify-center items-center gap-4 rounded">
+            <a href="RiwayatHM" class="text-xl font-bold text-gray-700 hover:text-black">←</a>
+            <h2 class="text-xl font-semibold">HM</h2>
         </div>
 
         <!-- Form Decanter 01 -->
-        <div class="bg-white p-6 rounded shadow-md max-w-md mx-auto">
+        <div class="bg-white p-6 rounded shadow-md w-full max-w-md">
             <h3 class="text-lg font-semibold mb-4 text-center">Decanter 01</h3>
-            <form method="post" action="">
-                <!-- CSRF Token -->
-                <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token'] ?>">
+            <form method="POST" action="{{ url('/Decanter01') }}">
+    @csrf
+
 
                 <div class="mb-4">
                     <label class="block text-sm font-medium mb-1">Tanggal</label>
-                    <input type="date" name="tanggal" value="<?= $tanggal ?>" class="w-full border px-4 py-2 rounded" required />
+                    <input type="date" name="tanggal" value="{{ old('tanggal', $data['tanggal'] ?? '') }}" class="w-full border px-4 py-2 rounded" required />
                 </div>
                 <div class="mb-4">
                     <label class="block text-sm font-medium mb-1">HM</label>
-                    <input type="text" name="hm" value="<?= $hm ?>" class="w-full border px-4 py-2 rounded" required />
+                    <input type="text" name="hm" value="{{ old('hm', $data['hm'] ?? '') }}" class="w-full border px-4 py-2 rounded" required />
                 </div>
                 <div class="mb-4 flex items-center justify-between">
                     <div class="w-full">
                         <label class="block text-sm font-medium mb-1">Next Service</label>
-                        <input type="text" name="next_service" value="<?= $nextService ?>" class="w-full border px-4 py-2 rounded" required />
+                        <input type="text" name="next_service" value="{{ old('next_service', $data['next_service'] ?? '') }}" class="w-full border px-4 py-2 rounded" required />
                     </div>
                     <div class="ml-4 mt-6 w-4 h-4 bg-green-500 rounded-full"></div>
                 </div>

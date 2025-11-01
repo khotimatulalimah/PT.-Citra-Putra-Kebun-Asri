@@ -7,17 +7,18 @@ use Illuminate\Http\Request;
 class Decanter01Controller extends Controller
 {
     public function index()
-    {
-        // Simulasi data HM Decanter 01
-        $data = [
-            'nama_unit' => 'Decanter 01',
-            'tanggal' => '2025-10-27',
-            'hm' => 1500,
-            'next_service' => 1500
-        ];
+{
+    // Data kosong untuk form input manual
+    $data = [
+        'nama_unit' => 'Decanter 01',
+        'tanggal' => '',
+        'hm' => '',
+        'next_service' => ''
+    ];
 
-        return view('Decanter01', compact('data'));
-    }
+    return view('Decanter01', compact('data'));
+}
+
 
     public function store(Request $request)
     {
@@ -37,6 +38,12 @@ class Decanter01Controller extends Controller
         ];
 
         // Redirect kembali ke halaman dengan data baru
-        return view('Decanter01', compact('data'))->with('success', 'Data berhasil disimpan!');
+       session()->push('riwayat', [
+    'tanggal' => $request->tanggal,
+    'hm' => $request->hm
+]);
+
+return redirect('/RiwayatHM');
+
     }
 }

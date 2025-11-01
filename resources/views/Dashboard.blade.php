@@ -25,11 +25,12 @@ $status = [
         <aside class="w-1/5 bg-gray-200 p-4 relative">
             <h1 class="text-sm text-gray-400 mb-4">Dashboard</h1>
             <div class="space-y-2">
-                <button onclick="toggleSubmenu()" class="w-full bg-white border text-left px-4 py-2 relative">Unit Mesin</button>
+                <button onclick="toggleSubmenu()" class="w-full bg-white border text-left px-4 py-2 relative">Mesin</button>
 
-                <!-- Submenu ke kanan -->
-                <div id="submenu" class="absolute top-16 left-[170px] bg-gray-100 border rounded shadow-md p-2 space-y-2 hidden z-10">
-                    <a href="{{ url('/HM') }}" class="w-full block bg-white border text-left px-4 py-2 hover:bg-gray-200">HM</a>
+                <!-- Submenu ke bawah -->
+<div id="submenu" class="bg-gray-100 border rounded shadow-md p-2 space-y-2 hidden">
+
+                    <a href="{{ url('/HM') }}" class="w-full block bg-white border text-left px-4 py-2 hover:bg-gray-200">Unit Mesin</a>
                     <button class="w-full bg-white border text-left px-4 py-2">Service</button>
                     <button class="w-full bg-white border text-left px-4 py-2">Riwayat Mesin</button>
                 </div>
