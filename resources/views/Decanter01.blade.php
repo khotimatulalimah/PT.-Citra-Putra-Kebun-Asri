@@ -8,10 +8,15 @@
 <body class="bg-gray-100 font-sans">
     <div class="min-h-screen flex flex-col items-center justify-center p-6">
         <!-- Header -->
-        <div class="bg-gray-200 py-4 mb-6 w-full max-w-md flex justify-center items-center gap-4 rounded">
-            <a href="RiwayatHM" class="text-xl font-bold text-gray-700 hover:text-black">←</a>
-            <h2 class="text-xl font-semibold">HM</h2>
-        </div>
+<div class="bg-gray-200 py-4 mb-6 w-full max-w-xl flex items-center justify-between px-4 rounded">
+    <div class="w-1/6">
+        <a href="RiwayatHM" class="text-xl font-bold text-gray-700 hover:text-black">←</a>
+    </div>
+    <div class="w-4/6 text-center">
+        <h2 class="text-xl font-semibold">HM</h2>
+    </div>
+    <div class="w-1/6"></div>
+</div>
 
         <!-- Form Decanter 01 -->
         <div class="bg-white p-6 rounded shadow-md w-full max-w-md">
