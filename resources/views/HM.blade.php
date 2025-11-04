@@ -1,83 +1,54 @@
-<?php
-// Simulasi daftar unit
-$units = [
-    "Decanter 01",
-    "Decanter 02",
-    "Separator 01",
-    "Separator 02",
-    "Separator 03",
-    "Genset 02",
-    "Turbine 01",
-    "Turbine 02",
-    "PRESS KAP 20 ( 01 )",
-    "PRESS 02",
-    "PRESS 03",
-    "PRESS 04",
-    " PRESS 05",
-    " PRESS 06",
-    "HYDROCYCLONE 01",
-    "RIPPLE MILL 01",
-    " RIPPLE MILL 03",
-    "EMPTY BUNCH PRESS",
-    "ID FAN BOILER"
-];
+@extends('dashboard_min')
 
+@section('title', 'Unit Mesin')
 
-// Pisahkan ke dua kolom: 1–11 dan 12–21
-$leftColumn = array_slice($units, 0, 11);
-$rightColumn = array_slice($units, 11);
-?>
+@section('content')
+@php
+    $units = [
+        "Decanter 01", "Decanter 02", "Separator 01", "Separator 02", "Separator 03",
+        "Genset 02", "Turbine 01", "Turbine 02", "PRESS KAP 20 ( 01 )", "PRESS 02",
+        "PRESS 03", "PRESS 04", "PRESS 05", "PRESS 06", "HYDROCYCLONE 01",
+        "RIPPLE MILL 01", "RIPPLE MILL 03", "EMPTY BUNCH PRESS", "ID FAN BOILER"
+    ];
+    $leftColumn = array_slice($units, 0, 10);
+    $rightColumn = array_slice($units, 10);
+@endphp
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>HM - Daftar Unit</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body class="bg-gray-100 font-sans">
-    <div class="min-h-screen flex flex-col items-center justify-center p-6">
-       <!-- Header -->
-<div class="bg-gray-200 py-4 mb-6 w-full max-w-xl flex items-center justify-between px-4 rounded">
-    <div class="w-1/6">
-        <a href="Dashboard" class="text-xl font-bold text-gray-700 hover:text-black">←</a>
-    </div>
-    <div class="w-4/6 text-center">
-        <h2 class="text-xl font-semibold">Unit Mesin</h2>
-    </div>
-    <div class="w-1/6"></div>
+<!-- Header -->
+<div class="bg-gradient-to-r from-yellow-500 to-orange-500 shadow-md border border-orange-600 py-4 mb-6 w-full max-w-5xl flex items-center justify-between px-6 rounded-lg">
+    <a href="{{ url('/dashboard') }}" class="text-xl font-bold text-white hover:text-gray-100 transition">←</a>
+    <h2 class="text-2xl font-bold text-white tracking-wide">HM</h2>
+    <div class="w-6"></div>
 </div>
 
-
-
-        <!-- Daftar Unit -->
-        <div class="bg-white p-6 rounded shadow-md w-full max-w-xl">
-            <h3 class="text-lg font-semibold mb-4 text-center">Daftar Unit</h3>
-            <div class="grid grid-cols-2 gap-x-12 justify-center text-sm">
-                <!-- Kolom kiri -->
-                <div class="flex flex-col items-end space-y-2">
-                    <?php foreach ($leftColumn as $index => $unit): ?>
-    <div>
-        <?php
-        $number = $index + 1;
-        if ($unit === "Decanter 01") {
-            echo "<a href='RiwayatHM' class='text-blue-600 hover:underline'>{$number}. {$unit}</a>";
-        } else {
-            echo "{$number}. " . ($unit ?: "");
-        }
-        ?>
-    </div>
-<?php endforeach; ?>
+<!-- Daftar Unit Mesin -->
+<div class="bg-white p-8 rounded-xl shadow-lg w-full max-w-5xl border border-gray-300">
+    <h2 class="text-2xl font-bold mb-8 text-center text-orange-700 tracking-wide">🛠️ Daftar Unit Mesin</h2>
+    <div class="grid grid-cols-2 gap-6 text-sm">
+        <!-- Kolom kiri -->
+        <div class="flex flex-col space-y-4">
+            @foreach ($leftColumn as $index => $unit)
+                @php $number = $index + 1; @endphp
+                <div class="flex items-center gap-4 bg-yellow-100 hover:bg-orange-100 px-5 py-3 rounded-lg shadow-sm transition duration-200">
+                    <div class="w-7 h-7 bg-orange-600 text-white text-xs font-bold flex items-center justify-center rounded-full shadow">{{ $number }}</div>
+                    @if (trim($unit) === "Decanter 01")
+                        <a href="{{ url('/riwayatHMdecanter01') }}" class="text-orange-700 font-semibold hover:underline transition">{{ $unit }}</a>
+                    @else
+                        <span class="text-gray-800 font-semibold">{{ $unit }}</span>
+                    @endif
                 </div>
+            @endforeach
+        </div>
 
-                <!-- Kolom kanan -->
-                <div class="flex flex-col items-start space-y-2">
-                    <?php foreach ($rightColumn as $index => $unit): ?>
-                        <div><?= ($index + 12) . ". " . ($unit ?: "") ?></div>
-                    <?php endforeach; ?>
+        <!-- Kolom kanan -->
+        <div class="flex flex-col space-y-4">
+            @foreach ($rightColumn as $index => $unit)
+                <div class="flex items-center gap-4 bg-yellow-100 hover:bg-orange-100 px-5 py-3 rounded-lg shadow-sm transition duration-200">
+                    <div class="w-7 h-7 bg-orange-600 text-white text-xs font-bold flex items-center justify-center rounded-full shadow">{{ $index + 11 }}</div>
+                    <span class="text-gray-800 font-semibold">{{ $unit }}</span>
                 </div>
-            </div>
+            @endforeach
         </div>
     </div>
-</body>
-</html>
+</div>
+@endsection

@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\Decanter01Controller;
 use App\Http\Controllers\RiwayatHMController;
+use App\Http\Controllers\HMController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,6 +22,8 @@ Route::get('/logout', [UserController::class, 'logout'])->middleware('auth')->na
 */
 Route::middleware('auth')->group(function () {
 
+    Route::post('/decanter01', [HMController::class, 'storeDecanter01']);
+
     // Dashboard
     Route::get('/dashboard', [UserController::class, 'dashboard'])->name('dashboard');
 
@@ -30,11 +33,12 @@ Route::middleware('auth')->group(function () {
 
     // HM Page
     Route::get('/hm', function () {
-        return view('HM');
+        return view('hm');
     })->name('hm');
 
     // Riwayat HM
-    Route::get('/riwayat-hm', [RiwayatHMController::class, 'index'])->name('riwayat.hm');
+    Route::get('/riwayatHMdecanter01', [RiwayatHMController::class, 'index'])->name('riwayatHMdecanter01');
+
 });
 
 /*

@@ -43,7 +43,7 @@ class Decanter01Controller extends Controller
     'hm' => $request->hm
 ]);
 
-return redirect('/RiwayatHM');
+return redirect('/riwayatHMdecanter01');
 
     }
 }

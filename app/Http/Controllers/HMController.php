@@ -6,19 +6,20 @@ use Illuminate\Http\Request;
 
 class HMController extends Controller
 {
-     public function index()
-    {
-        // Simulasi daftar unit
-        $units = [
-            "Decanter 01",
-            "Decanter 02"
-        ];
+     public function storeDecanter01(Request $request)
+{
+    // Validasi data
+    $validated = $request->validate([
+        'tanggal' => 'required|date',
+        'hm' => 'required|numeric',
+        'next_service' => 'required|string',
+    ]);
 
-        // Tambahkan unit kosong dari 3 sampai 20
-        for ($i = 3; $i <= 20; $i++) {
-            $units[] = ""; // Kosongkan label
-        }
+    // Simpan ke database (contoh model: Decanter01)
+    Decanter01::create($validated);
 
-        return view('hm.index', compact('units'));
-    }
+    // Redirect ke halaman riwayat
+    return redirect('/riwayatHMdecanter01')->with('success', 'Data berhasil disimpan');
+}
+
 }
