@@ -3,19 +3,19 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class Decanter01Controller extends Controller
+class Decanter02Controller extends Controller
 {
     // Menampilkan form input
     public function index()
     {
         $data = [
-            'nama_unit' => 'Decanter 01',
+            'nama_unit' => 'Decanter 02',
             'tanggal' => '',
             'hm' => '',
             'next_service' => ''
         ];
 
-        return view('Decanter01', compact('data'));
+        return view('Decanter02', compact('data'));
     }
 
     // Menyimpan data ke session
@@ -27,19 +27,19 @@ class Decanter01Controller extends Controller
             'next_service' => 'required|numeric'
         ]);
 
-        session()->push('riwayat_decanter01', [
+        session()->push('riwayat_decanter02', [
             'tanggal' => $request->tanggal,
             'hm' => $request->hm
         ]);
 
-        return redirect('/riwayatHMdecanter01');
+        return redirect('/riwayatHMdecanter02');
     }
 
     // Menampilkan riwayat
     public function riwayat()
     {
-        $riwayat = session('riwayat_decanter01', []);
-        return view('riwayatHMdecanter01', compact('riwayat'));
+        $riwayat = session('riwayat_decanter02', []);
+        return view('riwayatHMdecanter02', compact('riwayat'));
     }
 }
 

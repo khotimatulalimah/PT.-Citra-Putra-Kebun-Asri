@@ -6,7 +6,7 @@
 <div class="min-h-screen flex flex-col items-center justify-start p-6">
     <!-- Header -->
     <div class="bg-gradient-to-r from-yellow-500 to-orange-500 shadow-md border border-orange-600 py-4 mb-6 w-full max-w-5xl flex items-center justify-between px-6 rounded-lg">
-        <a href="{{ url('/riwayatHMdecanter02') }}" class="text-xl font-bold text-white hover:text-gray-100 transition">←</a>
+        <a href="{{ url('/riwayatHMidfanboiler') }}" class="text-xl font-bold text-white hover:text-gray-100 transition">←</a>
         <h2 class="text-2xl font-bold text-white tracking-wide">HM</h2>
         <div class="w-6"></div>
     </div>
@@ -14,7 +14,7 @@
     <!-- Form Decanter 01 -->
     <div class="bg-white p-8 rounded-xl shadow-lg w-full max-w-5xl border border-gray-300">
         <h3 class="text-xl font-bold mb-6 text-center text-orange-700">Decanter 02</h3>
-        <form method="POST" action="{{ url('/decanter02') }}">
+        <form method="POST" action="{{ url('/idfanboiler') }}">
             @csrf
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-6">

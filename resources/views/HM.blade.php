@@ -32,10 +32,29 @@
                 <div class="flex items-center gap-4 bg-yellow-100 hover:bg-orange-100 px-5 py-3 rounded-lg shadow-sm transition duration-200">
                     <div class="w-7 h-7 bg-orange-600 text-white text-xs font-bold flex items-center justify-center rounded-full shadow">{{ $number }}</div>
                     @if (trim($unit) === "Decanter 01")
-                        <a href="{{ url('/riwayatHMdecanter01') }}" class="text-orange-700 font-semibold hover:underline transition">{{ $unit }}</a>
+                    <a href="{{ url('/riwayatHMdecanter01') }}" class="text-orange-700 font-semibold hover:underline transition">{{ $unit }}</a>
+                    @elseif (trim($unit) === "Decanter 02")
+                    <a href="{{ url('/riwayatHMdecanter02') }}" class="text-orange-700 font-semibold hover:underline transition">{{ $unit }}</a>
+                    @elseif (trim($unit) === "Separator 01")
+                    <a href="{{ url('/riwayatHMseparator01') }}" class="text-orange-700 font-semibold hover:underline transition">{{ $unit }}</a>
+                    @elseif (trim($unit) === "Separator 02")
+                    <a href="{{ url('/riwayatHMseparator02') }}" class="text-orange-700 font-semibold hover:underline transition">{{ $unit }}</a>
+                    @elseif (trim($unit) === "Separator 03")
+                    <a href="{{ url('/riwayatHMseparator03') }}" class="text-orange-700 font-semibold hover:underline transition">{{ $unit }}</a>
+                    @elseif (trim($unit) === "Genset 02")
+                    <a href="{{ url('/riwayatHMgenset02') }}" class="text-orange-700 font-semibold hover:underline transition">{{ $unit }}</a>
+                    @elseif (trim($unit) === "Turbine 01")
+                    <a href="{{ url('/riwayatHMturbine01') }}" class="text-orange-700 font-semibold hover:underline transition">{{ $unit }}</a>
+                    @elseif (trim($unit) === "Turbine 02")
+                    <a href="{{ url('/riwayatHMturbine02') }}" class="text-orange-700 font-semibold hover:underline transition">{{ $unit }}</a>
+                    @elseif (trim($unit) === "PRESS KAP 20 ( 01 )")
+                    <a href="{{ url('/riwayatHMpresskap20_01') }}" class="text-orange-700 font-semibold hover:underline transition">{{ $unit }}</a>
+                    @elseif (trim($unit) === "PRESS 02")
+                    <a href="{{ url('/riwayatHMpress02') }}" class="text-orange-700 font-semibold hover:underline transition">{{ $unit }}</a>
                     @else
-                        <span class="text-gray-800 font-semibold">{{ $unit }}</span>
+                    <span class="text-gray-800 font-semibold">{{ $unit }}</span>
                     @endif
+
                 </div>
             @endforeach
         </div>
@@ -45,7 +64,27 @@
             @foreach ($rightColumn as $index => $unit)
                 <div class="flex items-center gap-4 bg-yellow-100 hover:bg-orange-100 px-5 py-3 rounded-lg shadow-sm transition duration-200">
                     <div class="w-7 h-7 bg-orange-600 text-white text-xs font-bold flex items-center justify-center rounded-full shadow">{{ $index + 11 }}</div>
+                    @if (trim($unit) === "PRESS 03")
+                    <a href="{{ url('/riwayatHMpress03') }}" class="text-orange-700 font-semibold hover:underline transition">{{ $unit }}</a>
+                    @elseif (trim($unit) === "PRESS 04")
+                    <a href="{{ url('/riwayatHMpress04') }}" class="text-orange-700 font-semibold hover:underline transition">{{ $unit }}</a>
+                    @elseif (trim($unit) === "PRESS 05")
+                    <a href="{{ url('/riwayatHMpress05') }}" class="text-orange-700 font-semibold hover:underline transition">{{ $unit }}</a>
+                    @elseif (trim($unit) === "PRESS 06")
+                    <a href="{{ url('/riwayatHMpress06') }}" class="text-orange-700 font-semibold hover:underline transition">{{ $unit }}</a>
+                    @elseif (trim($unit) === "HYDROCYCLONE 01")
+                    <a href="{{ url('/riwayatHMhydrocyclone01') }}" class="text-orange-700 font-semibold hover:underline transition">{{ $unit }}</a>
+                    @elseif (trim($unit) === "RIPPLE MILL 01")
+                    <a href="{{ url('/riwayatHMripplemill01') }}" class="text-orange-700 font-semibold hover:underline transition">{{ $unit }}</a>
+                    @elseif (trim($unit) === "RIPPLE MILL 03")
+                    <a href="{{ url('/riwayatHMripplemill03') }}" class="text-orange-700 font-semibold hover:underline transition">{{ $unit }}</a>
+                    @elseif (trim($unit) === "EMPTY BUNCH PRESS")
+                    <a href="{{ url('/riwayatHMemptybunchpress') }}" class="text-orange-700 font-semibold hover:underline transition">{{ $unit }}</a>
+                    @elseif (trim($unit) === "ID FAN BOILER")
+                    <a href="{{ url('/riwayatHMidfanboiler') }}" class="text-orange-700 font-semibold hover:underline transition">{{ $unit }}</a>
+                    @else
                     <span class="text-gray-800 font-semibold">{{ $unit }}</span>
+                    @endif
                 </div>
             @endforeach
         </div>

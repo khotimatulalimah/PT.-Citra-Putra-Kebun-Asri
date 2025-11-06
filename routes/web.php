@@ -3,8 +3,26 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\Decanter01Controller;
+use App\Http\Controllers\Decanter02Controller;
+use App\Http\Controllers\Separator01Controller;
+use App\Http\Controllers\Separator02Controller;
+use App\Http\Controllers\Genset02Controller;
+use App\Http\Controllers\Separator03Controller;
 use App\Http\Controllers\RiwayatHMController;
 use App\Http\Controllers\HMController;
+use App\Http\Controllers\Turbine01Controller;
+use App\Http\Controllers\Turbine02Controller;
+use App\Http\Controllers\PressKap20_01Controller;
+use App\Http\Controllers\Press02Controller;
+use App\Http\Controllers\Press03Controller;
+use App\Http\Controllers\Press04Controller;
+use App\Http\Controllers\Press05Controller;
+use App\Http\Controllers\Press06Controller;
+use App\Http\Controllers\Hydrocyclone01Controller;
+use App\Http\Controllers\RippleMill01Controller;
+use App\Http\Controllers\RippleMill03Controller;
+use App\Http\Controllers\EmptyBunchPressController;
+use App\Http\Controllers\IdFanBoilerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,14 +40,22 @@ Route::get('/logout', [UserController::class, 'logout'])->middleware('auth')->na
 */
 Route::middleware('auth')->group(function () {
 
-    Route::post('/decanter01', [HMController::class, 'storeDecanter01']);
+    //Route::post('/decanter01', [HMController::class, 'storeDecanter01']);
 
     // Dashboard
     Route::get('/dashboard', [UserController::class, 'dashboard'])->name('dashboard');
 
     // Decanter 01
-    Route::get('/decanter01', [Decanter01Controller::class, 'index'])->name('decanter.index');
-    Route::post('/decanter01', [Decanter01Controller::class, 'store'])->name('decanter.store');
+    //Route::get('/decanter01', [Decanter01Controller::class, 'index'])->name('decanter.index');
+    //Route::post('/decanter01', [Decanter01Controller::class, 'store'])->name('decanter.store');
+
+    // Decanter 02
+    //Route::get('/decanter02', [Decanter02Controller::class, 'index'])->name('decanter.index');
+    //Route::post('/decanter02', [Decanter02Controller::class, 'store'])->name('decanter.store');
+
+    // Separator 01
+    //Route::get('/separator01', [Decanter02Controller::class, 'index'])->name('separator.index');
+    //Route::post('/separator01', [Decanter02Controller::class, 'store'])->name('separator.store');
 
     // HM Page
     Route::get('/hm', function () {
@@ -37,8 +63,83 @@ Route::middleware('auth')->group(function () {
     })->name('hm');
 
     // Riwayat HM
-    Route::get('/riwayatHMdecanter01', [RiwayatHMController::class, 'index'])->name('riwayatHMdecanter01');
+    Route::get('/decanter01', [Decanter01Controller::class, 'index']);
+    Route::post('/decanter01', [Decanter01Controller::class, 'store']);
+    Route::get('/riwayatHMdecanter01', [Decanter01Controller::class, 'riwayat']);
 
+    Route::get('/decanter02', [Decanter02Controller::class, 'index']);
+    Route::post('/decanter02', [Decanter02Controller::class, 'store']);
+    Route::get('/riwayatHMdecanter02', [Decanter02Controller::class, 'riwayat']);
+
+    Route::get('/separator01', [Separator01Controller::class, 'index']);
+    Route::post('/separator01', [Separator01Controller::class, 'store']);
+    Route::get('/riwayatHMseparator01', [Separator01Controller::class, 'riwayat']);
+
+    Route::get('/separator02', [Separator02Controller::class, 'index']);
+    Route::post('/separator02', [Separator02Controller::class, 'store']);
+    Route::get('/riwayatHMseparator02', [Separator02Controller::class, 'riwayat']);
+
+    Route::get('/separator03', [Separator03Controller::class, 'index']);
+    Route::post('/separator03', [Separator03Controller::class, 'store']);
+    Route::get('/riwayatHMseparator03', [Separator03Controller::class, 'riwayat']);
+
+    Route::get('/genset02', [Genset02Controller::class, 'index']);
+    Route::post('/genset02', [Genset02Controller::class, 'store']);
+    Route::get('/riwayatHMgenset02', [Genset02Controller::class, 'riwayat']);
+
+    Route::get('/turbine01', [Turbine01Controller::class, 'index']);
+    Route::post('/turbine01', [Turbine01Controller::class, 'store']);
+    Route::get('/riwayatHMturbine01', [Turbine01Controller::class, 'riwayat']);
+
+    Route::get('/turbine02', [Turbine02Controller::class, 'index']);
+    Route::post('/turbine02', [Turbine02Controller::class, 'store']);
+    Route::get('/riwayatHMturbine02', [Turbine02Controller::class, 'riwayat']);
+
+    Route::get('/presskap20_01', [PressKap20_01Controller::class, 'index']);
+    Route::post('/presskap20_01', [PressKap20_01Controller::class, 'store']);
+    Route::get('/riwayatHMpresskap20_01', [PressKap20_01Controller::class, 'riwayat']);
+
+    Route::get('/press02', [Press02Controller::class, 'index']);
+    Route::post('/press02', [Press02Controller::class, 'store']);
+    Route::get('/riwayatHMpress02', [Press02Controller::class, 'riwayat']);
+
+    Route::get('/press03', [Press03Controller::class, 'index']);
+    Route::post('/press03', [Press03Controller::class, 'store']);
+    Route::get('/riwayatHMpress03', [Press03Controller::class, 'riwayat']);
+
+    Route::get('/press04', [Press04Controller::class, 'index']);
+    Route::post('/press04', [Press04Controller::class, 'store']);
+    Route::get('/riwayatHMpress04', [Press04Controller::class, 'riwayat']);
+
+    Route::get('/press05', [Press05Controller::class, 'index']);
+    Route::post('/press05', [Press05Controller::class, 'store']);
+    Route::get('/riwayatHMpress05', [Press05Controller::class, 'riwayat']);
+
+    Route::get('/press06', [Press06Controller::class, 'index']);
+    Route::post('/press06', [Press06Controller::class, 'store']);
+    Route::get('/riwayatHMpress06', [Press06Controller::class, 'riwayat']);
+
+    Route::get('/hydrocyclone01', [Hydrocyclone01Controller::class, 'index']);
+    Route::post('/hydrocyclone01', [Hydrocyclone01Controller::class, 'store']);
+    Route::get('/riwayatHMhydrocyclone01', [Hydrocyclone01Controller::class, 'riwayat']);
+
+    Route::get('/ripplemill01', [RippleMill01Controller::class, 'index']);
+    Route::post('/ripplemill01', [RippleMill01Controller::class, 'store']);
+    Route::get('/riwayatHMripplemill01', [RippleMill01Controller::class, 'riwayat']);
+
+    Route::get('/ripplemill03', [RippleMill03Controller::class, 'index']);
+    Route::post('/ripplemill03', [RippleMill03Controller::class, 'store']);
+    Route::get('/riwayatHMripplemill03', [RippleMill03Controller::class, 'riwayat']);
+
+    Route::get('/emptybunchpress', [EmptyBunchPressController::class, 'index']);
+    Route::post('/emptybunchpress', [EmptyBunchPressController::class, 'store']);
+    Route::get('/riwayatHMemptybunchpress', [EmptyBunchPressController::class, 'riwayat']);
+
+    Route::get('/idfanboiler', [IdFanBoilerController::class, 'index']);
+    Route::post('/idfanboiler', [IdFanBoilerController::class, 'store']);
+    Route::get('/riwayatHMidfanboiler', [IdFanBoilerController::class, 'riwayat']);
+
+    
 });
 
 /*
