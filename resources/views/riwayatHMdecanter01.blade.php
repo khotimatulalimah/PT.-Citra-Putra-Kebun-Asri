@@ -19,14 +19,18 @@
                     <thead class="bg-yellow-100 text-orange-800">
                         <tr>
                             <th class="border px-6 py-3 text-left font-semibold">Tanggal</th>
-                            <th class="border px-6 py-3 text-left font-semibold">HM</th>
+                            <th class="border px-6 py-3 text-left font-semibold">HM Hari Ini</th>
+                            <th class="border px-6 py-3 text-left font-semibold">Last Service</th>
+                            <th class="border px-6 py-3 text-left font-semibold">Next Service</th>
                         </tr>
                     </thead>
                     <tbody class="bg-white">
                         @foreach ($riwayat as $item)
                             <tr class="hover:bg-orange-50 transition duration-150">
-                                <td class="border px-6 py-3 text-gray-700">{{ $item['tanggal'] }}</td>
-                                <td class="border px-6 py-3 text-gray-700">{{ $item['hm'] }}</td>
+                                <td class="border px-6 py-3 text-gray-700">{{ $item->tanggal }}</td>
+                                <td class="border px-6 py-3 text-gray-700">{{ $item->hm_hari_ini }}</td>
+                                <td class="border px-6 py-3 text-gray-700">{{ $item->last_service }}</td>
+                                <td class="border px-6 py-3 text-gray-700">{{ $item->next_service }}</td>
                             </tr>
                         @endforeach
                     </tbody>

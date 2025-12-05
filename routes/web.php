@@ -23,6 +23,9 @@ use App\Http\Controllers\RippleMill01Controller;
 use App\Http\Controllers\RippleMill03Controller;
 use App\Http\Controllers\EmptyBunchPressController;
 use App\Http\Controllers\IdFanBoilerController;
+use App\Http\Controllers\DataServiceController;
+
+use App\Http\Controllers\ServiceDecanter01Controller;
 
 /*
 |--------------------------------------------------------------------------
@@ -56,6 +59,12 @@ Route::middleware('auth')->group(function () {
     // Separator 01
     //Route::get('/separator01', [Decanter02Controller::class, 'index'])->name('separator.index');
     //Route::post('/separator01', [Decanter02Controller::class, 'store'])->name('separator.store');
+
+
+    Route::get('/tambahservice', [DataServiceController::class, 'index']);
+    Route::post('/tambahservice', [DataServiceController::class, 'store']);
+    Route::get('/dataservice', [DataServiceController::class, 'riwayat']);
+
 
     // HM Page
     Route::get('/hm', function () {
@@ -138,6 +147,18 @@ Route::middleware('auth')->group(function () {
     Route::get('/idfanboiler', [IdFanBoilerController::class, 'index']);
     Route::post('/idfanboiler', [IdFanBoilerController::class, 'store']);
     Route::get('/riwayatHMidfanboiler', [IdFanBoilerController::class, 'riwayat']);
+
+
+
+
+    // Form input service Decanter01
+Route::get('/servicedecanter01', [ServiceDecanter01Controller::class, 'index'])->name('servicedecanter01.index');
+
+// Simpan data service Decanter01
+Route::post('/servicedecanter01', [ServiceDecanter01Controller::class, 'store'])->name('servicedecanter01.store');
+
+// Riwayat service Decanter01
+Route::get('/riwayatSERVICEdecanter01', [ServiceDecanter01Controller::class, 'riwayat'])->name('servicedecanter01.riwayat');
 
     
 });

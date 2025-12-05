@@ -2,6 +2,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\RiwayatTurbine02;
 
 class Turbine02Controller extends Controller
 {
@@ -20,26 +21,29 @@ class Turbine02Controller extends Controller
 
     // Menyimpan data ke session
     public function store(Request $request)
-    {
-        $request->validate([
-            'tanggal' => 'required|date',
-            'hm' => 'required|numeric',
-            'next_service' => 'required|numeric'
-        ]);
+{
+    $request->validate([
+        'tanggal' => 'required|date',
+        'hm' => 'required|numeric',
+        'next_service' => 'required|numeric'
+    ]);
 
-        session()->push('riwayat_turbine02', [
-            'tanggal' => $request->tanggal,
-            'hm' => $request->hm
-        ]);
+    RiwayatTurbine02::create([
+        'tanggal' => $request->tanggal,
+        'hm' => $request->hm,
+        'next_service' => $request->next_service
+    ]);
 
-        return redirect('/riwayatHMturbine02');
-    }
+    return redirect('/riwayatHMturbine02');
+}
+
 
     // Menampilkan riwayat
     public function riwayat()
-    {
-        $riwayat = session('riwayat_turbine02', []);
-        return view('riwayatHMturbine02', compact('riwayat'));
-    }
+{
+    $riwayat = RiwayatTurbine02::orderBy('tanggal', 'desc')->get();
+    return view('riwayatHMturbine02', compact('riwayat'));
+}
+
 }
 

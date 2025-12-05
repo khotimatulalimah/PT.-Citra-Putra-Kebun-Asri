@@ -56,7 +56,7 @@ $status = [
                     </svg>
                     <span>Unit Mesin</span>
                 </a>
-                <a href="#" class="flex items-center space-x-2 text-gray-600 hover:text-black">
+                <a href="{{ url('/dataservice') }}" class="flex items-center space-x-2 text-gray-600 hover:text-black">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-6h6v6m2 0a2 2 0 002-2v-6a2 2 0 00-2-2H7a2 2 0 00-2 2v6a2 2 0 002 2h10z" />
                     </svg>
@@ -89,7 +89,7 @@ $status = [
     <main class="w-4/5 p-8 overflow-y-auto">
         <!-- Greeting -->
         <div class="mb-6">
-            <h1 class="text-2xl font-bold text-gray-800">Hello, KHOTIMATUL 👋</h1>
+            <h1 class="text-2xl font-bold text-gray-800">Hello, PENGGUNA 👋</h1>
             <p class="text-sm text-gray-500">Your dashboard today</p>
         </div>
 

@@ -2,6 +2,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\RiwayatPress03;
 
 class Press03Controller extends Controller
 {
@@ -20,26 +21,29 @@ class Press03Controller extends Controller
 
     // Menyimpan data ke session
     public function store(Request $request)
-    {
-        $request->validate([
-            'tanggal' => 'required|date',
-            'hm' => 'required|numeric',
-            'next_service' => 'required|numeric'
-        ]);
+{
+    $request->validate([
+        'tanggal' => 'required|date',
+        'hm' => 'required|numeric',
+        'next_service' => 'required|numeric'
+    ]);
 
-        session()->push('riwayat_press03', [
-            'tanggal' => $request->tanggal,
-            'hm' => $request->hm
-        ]);
+    RiwayatPress03::create([
+        'tanggal' => $request->tanggal,
+        'hm' => $request->hm,
+        'next_service' => $request->next_service
+    ]);
 
-        return redirect('/riwayatHMpress03');
-    }
+    return redirect('/riwayatHMpress03');
+}
+
 
     // Menampilkan riwayat
     public function riwayat()
-    {
-        $riwayat = session('riwayat_press03', []);
-        return view('riwayatHMpress03', compact('riwayat'));
-    }
+{
+    $riwayat = RiwayatPress03::orderBy('tanggal', 'desc')->get();
+    return view('riwayatHMpress03', compact('riwayat'));
+}
+
 }
 

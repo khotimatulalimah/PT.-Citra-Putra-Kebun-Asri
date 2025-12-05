@@ -2,6 +2,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\RiwayatDecanter02;
 
 class Decanter02Controller extends Controller
 {
@@ -20,26 +21,29 @@ class Decanter02Controller extends Controller
 
     // Menyimpan data ke session
     public function store(Request $request)
-    {
-        $request->validate([
-            'tanggal' => 'required|date',
-            'hm' => 'required|numeric',
-            'next_service' => 'required|numeric'
-        ]);
+{
+    $request->validate([
+        'tanggal' => 'required|date',
+        'hm' => 'required|numeric',
+        'next_service' => 'required|numeric'
+    ]);
 
-        session()->push('riwayat_decanter02', [
-            'tanggal' => $request->tanggal,
-            'hm' => $request->hm
-        ]);
+    RiwayatDecanter02::create([
+        'tanggal' => $request->tanggal,
+        'hm' => $request->hm,
+        'next_service' => $request->next_service
+    ]);
 
-        return redirect('/riwayatHMdecanter02');
-    }
+    return redirect('/riwayatHMdecanter02');
+}
+
 
     // Menampilkan riwayat
     public function riwayat()
-    {
-        $riwayat = session('riwayat_decanter02', []);
-        return view('riwayatHMdecanter02', compact('riwayat'));
-    }
+{
+    $riwayat = RiwayatDecanter02::orderBy('tanggal', 'desc')->get();
+    return view('riwayatHMdecanter02', compact('riwayat'));
+}
+
 }
 

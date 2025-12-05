@@ -1,6 +1,6 @@
 @extends('dashboard_min')
 
-@section('title', 'Unit Mesin')
+@section('title', 'Service')
 
 @section('content')
 @php
@@ -17,7 +17,7 @@
 <!-- Header -->
 <div class="bg-gradient-to-r from-yellow-500 to-orange-500 shadow-md border border-orange-600 py-4 mb-6 w-full max-w-5xl flex items-center justify-between px-6 rounded-lg">
     <a href="{{ url('/dashboard') }}" class="text-xl font-bold text-white hover:text-gray-100 transition">←</a>
-    <h2 class="text-2xl font-bold text-white tracking-wide">HM</h2>
+    <h2 class="text-2xl font-bold text-white tracking-wide">SERVICE</h2>
     <div class="w-6"></div>
 </div>
 
@@ -32,7 +32,7 @@
                 <div class="flex items-center gap-4 bg-yellow-100 hover:bg-orange-100 px-5 py-3 rounded-lg shadow-sm transition duration-200">
                     <div class="w-7 h-7 bg-orange-600 text-white text-xs font-bold flex items-center justify-center rounded-full shadow">{{ $number }}</div>
                     @if (trim($unit) === "DECANTER 01")
-                    <a href="{{ url('/riwayatHMdecanter01') }}" class="text-orange-700 font-semibold hover:underline transition">{{ $unit }}</a>
+                    <a href="{{ url('/riwayatSERVICEdecanter01') }}" class="text-orange-700 font-semibold hover:underline transition">{{ $unit }}</a>
                     @elseif (trim($unit) === "DECANTER 02")
                     <a href="{{ url('/riwayatHMdecanter02') }}" class="text-orange-700 font-semibold hover:underline transition">{{ $unit }}</a>
                     @elseif (trim($unit) === "SEPARATOR 01")

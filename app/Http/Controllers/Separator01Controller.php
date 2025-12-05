@@ -2,6 +2,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\RiwayatSeparator01;
 
 class Separator01Controller extends Controller
 {
@@ -20,26 +21,29 @@ class Separator01Controller extends Controller
 
     // Menyimpan data ke session
     public function store(Request $request)
-    {
-        $request->validate([
-            'tanggal' => 'required|date',
-            'hm' => 'required|numeric',
-            'next_service' => 'required|numeric'
-        ]);
+{
+    $request->validate([
+        'tanggal' => 'required|date',
+        'hm' => 'required|numeric',
+        'next_service' => 'required|numeric'
+    ]);
 
-        session()->push('riwayat_separator01', [
-            'tanggal' => $request->tanggal,
-            'hm' => $request->hm
-        ]);
+    RiwayatSeparator01::create([
+        'tanggal' => $request->tanggal,
+        'hm' => $request->hm,
+        'next_service' => $request->next_service
+    ]);
 
-        return redirect('/riwayatHMseparator01');
-    }
+    return redirect('/riwayatHMseparator01');
+}
+
 
     // Menampilkan riwayat
     public function riwayat()
-    {
-        $riwayat = session('riwayat_separator01', []);
-        return view('riwayatHMseparator01', compact('riwayat'));
-    }
+{
+    $riwayat = RiwayatSeparator01::orderBy('tanggal', 'desc')->get();
+    return view('riwayatHMseparator01', compact('riwayat'));
+}
+
 }
 

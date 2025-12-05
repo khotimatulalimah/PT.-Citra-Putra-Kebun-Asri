@@ -2,6 +2,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\RiwayatGenset02;
 
 class Genset02Controller extends Controller
 {
@@ -20,26 +21,29 @@ class Genset02Controller extends Controller
 
     // Menyimpan data ke session
     public function store(Request $request)
-    {
-        $request->validate([
-            'tanggal' => 'required|date',
-            'hm' => 'required|numeric',
-            'next_service' => 'required|numeric'
-        ]);
+{
+    $request->validate([
+        'tanggal' => 'required|date',
+        'hm' => 'required|numeric',
+        'next_service' => 'required|numeric'
+    ]);
 
-        session()->push('riwayat_genset02', [
-            'tanggal' => $request->tanggal,
-            'hm' => $request->hm
-        ]);
+    RiwayatGenset02::create([
+        'tanggal' => $request->tanggal,
+        'hm' => $request->hm,
+        'next_service' => $request->next_service
+    ]);
 
-        return redirect('/riwayatHMgenset02');
-    }
+    return redirect('/riwayatHMgenset02');
+}
+
 
     // Menampilkan riwayat
     public function riwayat()
-    {
-        $riwayat = session('riwayat_genset02', []);
-        return view('riwayatHMgenset02', compact('riwayat'));
-    }
+{
+    $riwayat = RiwayatGenset02::orderBy('tanggal', 'desc')->get();
+    return view('riwayatHMgenset02', compact('riwayat'));
+}
+
 }
 
