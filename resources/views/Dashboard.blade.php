@@ -29,7 +29,9 @@ $status = [
 <aside class="w-1/5 bg-white border-r p-6 relative">
     <!-- Logo dan Nama Perusahaan -->
     <div class="flex items-center space-x-3 mb-6">
-        <img src="https://asset.loker.id/img/2017/07/cpka-logo-150x150.jpg" alt="Logo PT Citra Putra Kebun Asri" class="w-10 h-10 rounded-full">
+        <img src="https://asset.loker.id/img/2017/07/cpka-logo-150x150.jpg" 
+     alt="Logo CPKA" 
+     class="w-12 h-12 rounded-full object-contain">
         <h1 class="text-sm font-semibold text-gray-700 whitespace-nowrap">PT. Citra Putra Kebun Asri</h1>
     </div>
 
