@@ -29,11 +29,13 @@ $status = [
 <aside class="w-1/5 bg-white border-r p-6 relative">
     <!-- Logo dan Nama Perusahaan -->
     <div class="flex items-center space-x-3 mb-6">
-        <img src="https://asset.loker.id/img/2017/07/cpka-logo-150x150.jpg" 
+        <img src="https://sinaralam.com/wp-content/uploads/2024/06/cpka.png" 
      alt="Logo CPKA" 
-     class="w-12 h-12 rounded-full object-contain">
-        <h1 class="text-sm font-semibold text-gray-700 whitespace-nowrap">PT. Citra Putra Kebun Asri</h1>
-    </div>
+     class="w-14 h-14 rounded-full object-contain">
+        <h1 class="text-sm font-semibold text-gray-700 whitespace-nowrap -ml-2">
+    PT. Citra Putra Kebun Asri
+</h1>
+</div>
 
     <!-- Menu Navigasi -->
     <nav class="space-y-4 text-sm">
