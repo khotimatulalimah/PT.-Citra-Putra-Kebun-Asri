@@ -30,6 +30,7 @@
                             <th class="border px-6 py-3 text-left font-semibold">Waktu Mulai</th>
                             <th class="border px-6 py-3 text-left font-semibold">Waktu Selesai</th>
                             <th class="border px-6 py-3 text-left font-semibold">Lama Penggantian (menit)</th>
+                            <th class="border px-6 py-3 text-center font-semibold">Aksi</th>
                         </tr>
                     </thead>
                     <tbody class="bg-white">
@@ -47,6 +48,14 @@
                                 <td class="border px-6 py-3 text-gray-700">{{ $item->waktu_mulai }}</td>
                                 <td class="border px-6 py-3 text-gray-700">{{ $item->waktu_selesai }}</td>
                                 <td class="border px-6 py-3 text-gray-700">{{ $item->lama_penggantian }}</td>
+                                <td class="border px-6 py-3 text-center">
+                                    <form action="{{ route('service.destroy', $item->id) }}" method="POST" onsubmit="return confirm('Yakin hapus data ini?')">
+    @csrf
+    @method('DELETE')
+    <button type="submit">Hapus</button>
+</form>
+
+                                </td>
                             </tr>
                         @endforeach
                     </tbody>

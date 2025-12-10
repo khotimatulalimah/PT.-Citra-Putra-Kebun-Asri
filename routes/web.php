@@ -24,7 +24,6 @@ use App\Http\Controllers\RippleMill03Controller;
 use App\Http\Controllers\EmptyBunchPressController;
 use App\Http\Controllers\IdFanBoilerController;
 use App\Http\Controllers\DataServiceController;
-
 use App\Http\Controllers\ServiceDecanter01Controller;
 
 /*
@@ -159,6 +158,9 @@ Route::post('/servicedecanter01', [ServiceDecanter01Controller::class, 'store'])
 
 // Riwayat service Decanter01
 Route::get('/riwayatSERVICEdecanter01', [ServiceDecanter01Controller::class, 'riwayat'])->name('servicedecanter01.riwayat');
+Route::delete('/servicedecanter01/{id}', [ServiceDecanter01Controller::class, 'destroy'])
+    ->name('service.destroy');
+
 
     
 });

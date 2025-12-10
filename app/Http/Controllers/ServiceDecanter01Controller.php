@@ -73,6 +73,15 @@ class ServiceDecanter01Controller extends Controller
         return redirect('/riwayatSERVICEdecanter01');
     }
 
+
+   public function destroy($id)
+{
+    $service = RiwayatServiceDecanter01::findOrFail($id);
+    $service->delete();
+
+    return redirect()->back()->with('success', 'Data berhasil dihapus');
+}
+
     // Menampilkan riwayat service
     public function riwayat()
     {
