@@ -17,9 +17,9 @@ class RiwayatServiceDecanter01 extends Model
         'hm_hari_ini',
         'last_service',
         'next_service',
-        'nama_barang',
+        /*'nama_barang',
         'jumlah_barang',
-        'harga',
+        'harga',*/
         'nama_petugas',
         'alat_kerja',
         'waktu_mulai',

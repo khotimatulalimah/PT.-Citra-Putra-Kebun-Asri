@@ -14,8 +14,11 @@ class RiwayatDecanter01 extends Model
     // Kolom yang bisa diisi mass-assignment
     protected $fillable = [
         'tanggal',
-        'hm_hari_ini',
-        'last_service',
-        'next_service'
+        'paten_hm',           // otomatis 4000
+        'hm_hari_ini',        // diisi manual
+        'last_service',       // diisi manual
+        'jam_operasional',    // diisi manual
+        'sisa_waktu_service', // otomatis = 4000 - jam_operasional
+        'next_service'        // otomatis = hm_hari_ini + sisa_waktu_service
     ];
 }
