@@ -17,9 +17,9 @@ return new class extends Migration
         $table->integer('hm_hari_ini');
         $table->integer('last_service');
         $table->integer('next_service');
-        $table->string('nama_barang');
+       /* $table->string('nama_barang');
         $table->integer('jumlah_barang');
-        $table->integer('harga');
+        $table->integer('harga');*/
         $table->string('nama_petugas');
         $table->string('alat_kerja');
         $table->time('waktu_mulai');
@@ -34,7 +34,8 @@ return new class extends Migration
      * Reverse the migrations.
      */
     public function down(): void
-    {
-        Schema::dropIfExists('riwayat_press06');
-    }
+{
+    Schema::dropIfExists('riwayat_service_decanter01');
+}
+
 };

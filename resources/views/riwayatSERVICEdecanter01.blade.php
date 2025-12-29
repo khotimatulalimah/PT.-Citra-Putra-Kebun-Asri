@@ -22,9 +22,6 @@
                             <th class="border px-6 py-3 text-left font-semibold">HM Hari Ini</th>
                             <th class="border px-6 py-3 text-left font-semibold">Last Service</th>
                             <th class="border px-6 py-3 text-left font-semibold">Next Service</th>
-                            <th class="border px-6 py-3 text-left font-semibold">Nama Barang</th>
-                            <th class="border px-6 py-3 text-left font-semibold">Jumlah Barang</th>
-                            <th class="border px-6 py-3 text-left font-semibold">Harga</th>
                             <th class="border px-6 py-3 text-left font-semibold">Nama Petugas</th>
                             <th class="border px-6 py-3 text-left font-semibold">Alat Kerja</th>
                             <th class="border px-6 py-3 text-left font-semibold">Waktu Mulai</th>
@@ -40,21 +37,31 @@
                                 <td class="border px-6 py-3 text-gray-700">{{ $item->hm_hari_ini }}</td>
                                 <td class="border px-6 py-3 text-gray-700">{{ $item->last_service }}</td>
                                 <td class="border px-6 py-3 text-gray-700">{{ $item->next_service }}</td>
-                                <td class="border px-6 py-3 text-gray-700">{{ $item->nama_barang }}</td>
-                                <td class="border px-6 py-3 text-gray-700">{{ $item->jumlah_barang }}</td>
-                                <td class="border px-6 py-3 text-gray-700">{{ $item->harga }}</td>
                                 <td class="border px-6 py-3 text-gray-700">{{ $item->nama_petugas }}</td>
                                 <td class="border px-6 py-3 text-gray-700">{{ $item->alat_kerja }}</td>
                                 <td class="border px-6 py-3 text-gray-700">{{ $item->waktu_mulai }}</td>
                                 <td class="border px-6 py-3 text-gray-700">{{ $item->waktu_selesai }}</td>
                                 <td class="border px-6 py-3 text-gray-700">{{ $item->lama_penggantian }}</td>
                                 <td class="border px-6 py-3 text-center">
-                                    <form action="{{ route('service.destroy', $item->id) }}" method="POST" onsubmit="return confirm('Yakin hapus data ini?')">
-    @csrf
-    @method('DELETE')
-    <button type="submit">Hapus</button>
-</form>
+                                    <div class="flex justify-center gap-2">
+                                        <!-- Tombol Edit -->
+                                        <a href="{{ route('service.edit', $item->id) }}">
+                                            <button type="submit"
+                                           class="bg-yellow-400 text-black px-3 py-1 rounded hover:bg-yellow-500 text-xs font-semibold transition">
+                                           Edit
+                                           </button>
+                                        </a>
 
+                                        <!-- Tombol Hapus -->
+                                        <form action="{{ route('service.destroy', $item->id) }}" method="POST" onsubmit="return confirm('Yakin hapus data ini?')">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit"
+                                                    class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600 text-xs font-semibold transition">
+                                                Hapus
+                                            </button>
+                                        </form>
+                                    </div>
                                 </td>
                             </tr>
                         @endforeach

@@ -1,89 +1,87 @@
 @extends('dashboard_min')
 
-@section('title', 'Unit Mesin')
+@section('title', 'Edit HM')
 
 @section('content')
 <div class="min-h-screen flex flex-col items-center justify-start p-6">
     <!-- Header -->
     <div class="bg-gradient-to-r from-yellow-500 to-orange-500 shadow-md border border-orange-600 py-4 mb-6 w-full max-w-5xl flex items-center justify-between px-6 rounded-lg">
         <a href="{{ url('/riwayatHMdecanter01') }}" class="text-xl font-bold text-white hover:text-gray-100 transition">←</a>
-        <h2 class="text-2xl font-bold text-white tracking-wide">HM</h2>
+        <h2 class="text-2xl font-bold text-white tracking-wide">Edit HM</h2>
         <div class="w-6"></div>
     </div>
 
-    <!-- Form Decanter 01 -->
+    <!-- Form Edit -->
     <div class="bg-white p-8 rounded-xl shadow-lg w-full max-w-5xl border border-gray-300">
-        <h3 class="text-xl font-bold mb-2 text-center text-orange-700">Decanter 01</h3>
-        <p class="text-center text-sm text-gray-600 mb-6">Paten HM 4000 (paten)</p>
-
-        <form method="POST" action="{{ url('/decanter01') }}">
+        <form method="POST" action="{{ url('/decanter01/update/' . $data->id) }}">
             @csrf
+            @method('PUT')
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-6">
                 <!-- Tanggal -->
                 <div>
                     <label class="block text-sm font-medium mb-1 text-gray-700">Tanggal</label>
                     <input type="date" name="tanggal"
-                           value="{{ old('tanggal') }}"
+                           value="{{ $data->tanggal }}"
                            class="w-full border px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-orange-300"
                            required />
                 </div>
 
-                <!-- Paten HM (4000, readonly) -->
+                <!-- Paten HM -->
                 <div>
                     <label class="block text-sm font-medium mb-1 text-gray-700">Paten HM</label>
                     <input type="number" name="paten_hm" id="paten_hm"
-                           value="4000"
+                           value="{{ $data->paten_hm }}"
                            class="w-full border px-4 py-2 rounded bg-gray-100 text-gray-600" readonly />
                 </div>
 
-                <!-- HM Hari Ini (manual) -->
+                <!-- HM Hari Ini -->
                 <div>
                     <label class="block text-sm font-medium mb-1 text-gray-700">HM Hari Ini</label>
                     <input type="number" name="hm_hari_ini" id="hm_hari_ini"
-                           value="{{ old('hm_hari_ini') }}"
+                           value="{{ $data->hm_hari_ini }}"
                            class="w-full border px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-orange-300"
-                           min="0" step="1" required />
+                           min="0" required />
                 </div>
 
-                <!-- Last Service (manual) -->
+                <!-- Last Service -->
                 <div>
                     <label class="block text-sm font-medium mb-1 text-gray-700">Last Service</label>
                     <input type="number" name="last_service" id="last_service"
-                           value="{{ old('last_service') }}"
+                           value="{{ $data->last_service }}"
                            class="w-full border px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-orange-300"
-                           min="0" step="1" required />
+                           min="0" required />
                 </div>
 
-                <!-- Jam Operasional (manual) -->
+                <!-- Jam Operasional -->
                 <div>
                     <label class="block text-sm font-medium mb-1 text-gray-700">Jam Operasional</label>
                     <input type="number" name="jam_operasional" id="jam_operasional"
-                           value="{{ old('jam_operasional') }}"
+                           value="{{ $data->jam_operasional }}"
                            class="w-full border px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-orange-300"
-                           min="0" step="1" required />
+                           min="0" required />
                 </div>
 
-                <!-- Sisa Waktu Service (otomatis = 4000 - jam_operasional) -->
+                <!-- Sisa Waktu Service -->
                 <div>
-                    <label class="block text-sm font-medium mb-1 text-gray-700">Sisa Waktu Service (otomatis)</label>
+                    <label class="block text-sm font-medium mb-1 text-gray-700">Sisa Waktu Service</label>
                     <input type="number" name="sisa_waktu_service" id="sisa_waktu_service"
-                           value="{{ old('sisa_waktu_service') }}"
+                           value="{{ $data->sisa_waktu_service }}"
                            class="w-full border px-4 py-2 rounded bg-gray-100 text-gray-600" readonly />
                 </div>
 
-                <!-- Next Service (otomatis = hm_hari_ini + sisa_waktu_service) -->
+                <!-- Next Service -->
                 <div>
-                    <label class="block text-sm font-medium mb-1 text-gray-700">Next Service (otomatis)</label>
+                    <label class="block text-sm font-medium mb-1 text-gray-700">Next Service</label>
                     <input type="number" name="next_service" id="next_service"
-                           value="{{ old('next_service') }}"
+                           value="{{ $data->next_service }}"
                            class="w-full border px-4 py-2 rounded bg-gray-100 text-gray-600" readonly />
                 </div>
             </div>
 
             <div class="flex justify-end gap-4 mt-8">
-                <button type="button" class="bg-yellow-400 px-6 py-2 rounded text-black font-semibold hover:bg-yellow-500 transition">Edit</button>
-                <button type="submit" class="bg-blue-600 px-6 py-2 rounded text-white font-semibold hover:bg-blue-700 transition">Simpan</button>
+                <a href="{{ url('/riwayatHMdecanter01') }}" class="bg-gray-300 px-6 py-2 rounded text-black font-semibold hover:bg-gray-400 transition">Batal</a>
+                <button type="submit" class="bg-blue-600 px-6 py-2 rounded text-white font-semibold hover:bg-blue-700 transition">Simpan Perubahan</button>
             </div>
         </form>
     </div>
@@ -92,7 +90,7 @@
 <!-- Script perhitungan otomatis -->
 <script>
 document.addEventListener('DOMContentLoaded', function () {
-    const patenHM = document.getElementById('paten_hm'); // 4000
+    const patenHM = document.getElementById('paten_hm');
     const hmHariIni = document.getElementById('hm_hari_ini');
     const jamOperasional = document.getElementById('jam_operasional');
     const sisaWaktuService = document.getElementById('sisa_waktu_service');
@@ -107,30 +105,13 @@ document.addEventListener('DOMContentLoaded', function () {
         const hm = toInt(hmHariIni) || 0;
         const jamOp = toInt(jamOperasional) || 0;
 
-        // Sisa = 4000 - jam_operasional
         const sisa = paten - jamOp;
         sisaWaktuService.value = Number.isFinite(sisa) ? sisa : '';
-
-        // Next = hm_hari_ini + sisa
-        const next = hm + (Number.isFinite(sisa) ? sisa : 0);
-        nextService.value = Number.isFinite(next) ? next : '';
-
-        // Highlight jika sisa rendah
-        if (Number.isFinite(sisa) && sisa < 500) {
-            sisaWaktuService.style.backgroundColor = '#fee2e2';
-            sisaWaktuService.style.color = '#b91c1c';
-            sisaWaktuService.style.fontWeight = 'bold';
-        } else {
-            sisaWaktuService.style.backgroundColor = '#f3f4f6';
-            sisaWaktuService.style.color = '#111827';
-            sisaWaktuService.style.fontWeight = 'normal';
-        }
+        nextService.value = Number.isFinite(sisa) ? hm + sisa : '';
     }
 
-    // Inisialisasi
     updateComputedFields();
 
-    // Event listeners
     hmHariIni.addEventListener('input', updateComputedFields);
     jamOperasional.addEventListener('input', updateComputedFields);
 });

@@ -75,6 +75,10 @@ Route::middleware('auth')->group(function () {
     Route::post('/decanter01', [Decanter01Controller::class, 'store']);
     Route::get('/riwayatHMdecanter01', [Decanter01Controller::class, 'riwayat']);
 
+    Route::get('/decanter01/edit/{id}', [Decanter01Controller::class, 'edit']); 
+    Route::put('/decanter01/update/{id}', [Decanter01Controller::class, 'update']); 
+    Route::delete('/decanter01/delete/{id}', [Decanter01Controller::class, 'destroy']);
+
     Route::get('/decanter02', [Decanter02Controller::class, 'index']);
     Route::post('/decanter02', [Decanter02Controller::class, 'store']);
     Route::get('/riwayatHMdecanter02', [Decanter02Controller::class, 'riwayat']);
@@ -157,9 +161,25 @@ Route::get('/servicedecanter01', [ServiceDecanter01Controller::class, 'index'])-
 Route::post('/servicedecanter01', [ServiceDecanter01Controller::class, 'store'])->name('servicedecanter01.store');
 
 // Riwayat service Decanter01
-Route::get('/riwayatSERVICEdecanter01', [ServiceDecanter01Controller::class, 'riwayat'])->name('servicedecanter01.riwayat');
+Route::get('/riwayatSERVICEdecanter01', [ServiceDecanter01Controller::class, 'riwayat'])
+    ->name('servicedecanter01.riwayat');
+
+// Tambah data service (form input)
+Route::get('/servicedecanter01', [ServiceDecanter01Controller::class, 'index'])
+    ->name('service.index');
+Route::post('/servicedecanter01', [ServiceDecanter01Controller::class, 'store'])
+    ->name('service.store');
+
+// Edit & Update data service
+Route::get('/servicedecanter01/edit/{id}', [ServiceDecanter01Controller::class, 'edit'])
+    ->name('service.edit');
+Route::put('/servicedecanter01/update/{id}', [ServiceDecanter01Controller::class, 'update'])
+    ->name('service.update');
+
+// Hapus data service
 Route::delete('/servicedecanter01/{id}', [ServiceDecanter01Controller::class, 'destroy'])
     ->name('service.destroy');
+
 
 
     
