@@ -21,5 +21,3 @@ class RiwayatMesinController extends Controller
     // Redirect ke halaman riwayat
     return redirect('/riwayatmesindecanter01')->with('success', 'Data berhasil disimpan');
 }
-
-}
