@@ -70,6 +70,11 @@ Route::middleware('auth')->group(function () {
         return view('hm');
     })->name('hm');
 
+    // HM Page
+    Route::get('/riwayatmesin', function () {
+        return view('riwayatmesin');
+    })->name('riwayatmesin');
+
     // Riwayat HM
     Route::get('/decanter01', [Decanter01Controller::class, 'index']);
     Route::post('/decanter01', [Decanter01Controller::class, 'store']);
