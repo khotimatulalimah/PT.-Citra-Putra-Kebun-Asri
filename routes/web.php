@@ -6,10 +6,8 @@ use App\Http\Controllers\Decanter01Controller;
 use App\Http\Controllers\Decanter02Controller;
 use App\Http\Controllers\Separator01Controller;
 use App\Http\Controllers\Separator02Controller;
-use App\Http\Controllers\Genset02Controller;
 use App\Http\Controllers\Separator03Controller;
-use App\Http\Controllers\RiwayatHMController;
-use App\Http\Controllers\HMController;
+use App\Http\Controllers\Genset02Controller;
 use App\Http\Controllers\Turbine01Controller;
 use App\Http\Controllers\Turbine02Controller;
 use App\Http\Controllers\PressKap20_01Controller;
@@ -25,59 +23,49 @@ use App\Http\Controllers\EmptyBunchPressController;
 use App\Http\Controllers\IdFanBoilerController;
 use App\Http\Controllers\DataServiceController;
 use App\Http\Controllers\ServiceDecanter01Controller;
-use App\Http\Controllers\RiwayatMesinController;
 
 /*
 |--------------------------------------------------------------------------
-| Auth (Login & Logout)
+| Auth
 |--------------------------------------------------------------------------
 */
 Route::get('/login', [UserController::class, 'login'])->name('login');
 Route::post('/login', [UserController::class, 'loginAction'])->name('login.action');
-Route::get('/logout', [UserController::class, 'logout'])->middleware('auth')->name('logout');
+Route::get('/logout', [UserController::class, 'logout'])
+    ->middleware('auth')
+    ->name('logout');
 
 /*
 |--------------------------------------------------------------------------
-| Semua Halaman di Bawah Ini Wajib Login
+| Protected Routes (Wajib Login)
 |--------------------------------------------------------------------------
 */
 Route::middleware('auth')->group(function () {
 
-    //Route::post('/decanter01', [HMController::class, 'storeDecanter01']);
-
     // Dashboard
     Route::get('/dashboard', [UserController::class, 'dashboard'])->name('dashboard');
-
-    // Decanter 01
-    //Route::get('/decanter01', [Decanter01Controller::class, 'index'])->name('decanter.index');
-    //Route::post('/decanter01', [Decanter01Controller::class, 'store'])->name('decanter.store');
-
-    // Decanter 02
-    //Route::get('/decanter02', [Decanter02Controller::class, 'index'])->name('decanter.index');
-    //Route::post('/decanter02', [Decanter02Controller::class, 'store'])->name('decanter.store');
-
-    // Separator 01
-    //Route::get('/separator01', [Decanter02Controller::class, 'index'])->name('separator.index');
-    //Route::post('/separator01', [Decanter02Controller::class, 'store'])->name('separator.store');
-
-
-    Route::get('/tambahservice', [DataServiceController::class, 'index']);
-    Route::post('/tambahservice', [DataServiceController::class, 'store']);
-    Route::get('/dataservice', [DataServiceController::class, 'riwayat']);
-
 
     // HM Page
     Route::get('/hm', function () {
         return view('hm');
     })->name('hm');
 
-    // Riwayat HM
+    // =========================
+    // Data Service Umum
+    // =========================
+    Route::get('/tambahservice', [DataServiceController::class, 'index']);
+    Route::post('/tambahservice', [DataServiceController::class, 'store']);
+    Route::get('/dataservice', [DataServiceController::class, 'riwayat']);
+
+    // =========================
+    // RIWAYAT HM MESIN
+    // =========================
+
     Route::get('/decanter01', [Decanter01Controller::class, 'index']);
     Route::post('/decanter01', [Decanter01Controller::class, 'store']);
     Route::get('/riwayatHMdecanter01', [Decanter01Controller::class, 'riwayat']);
-
-    Route::get('/decanter01/edit/{id}', [Decanter01Controller::class, 'edit']); 
-    Route::put('/decanter01/update/{id}', [Decanter01Controller::class, 'update']); 
+    Route::get('/decanter01/edit/{id}', [Decanter01Controller::class, 'edit']);
+    Route::put('/decanter01/update/{id}', [Decanter01Controller::class, 'update']);
     Route::delete('/decanter01/delete/{id}', [Decanter01Controller::class, 'destroy']);
 
     Route::get('/decanter02', [Decanter02Controller::class, 'index']);
@@ -152,68 +140,31 @@ Route::middleware('auth')->group(function () {
     Route::post('/idfanboiler', [IdFanBoilerController::class, 'store']);
     Route::get('/riwayatHMidfanboiler', [IdFanBoilerController::class, 'riwayat']);
 
+    // =========================
+    // SERVICE DECANTER 01
+    // =========================
+    Route::get('/servicedecanter01', [ServiceDecanter01Controller::class, 'index'])
+        ->name('servicedecanter01.index');
 
+    Route::post('/servicedecanter01', [ServiceDecanter01Controller::class, 'store'])
+        ->name('servicedecanter01.store');
 
+    Route::get('/riwayatSERVICEdecanter01', [ServiceDecanter01Controller::class, 'riwayat'])
+        ->name('servicedecanter01.riwayat');
 
-    // Form input service Decanter01
-Route::get('/servicedecanter01', [ServiceDecanter01Controller::class, 'index'])->name('servicedecanter01.index');
+    Route::get('/servicedecanter01/edit/{id}', [ServiceDecanter01Controller::class, 'edit'])
+        ->name('service.edit');
 
-// Simpan data service Decanter01
-Route::post('/servicedecanter01', [ServiceDecanter01Controller::class, 'store'])->name('servicedecanter01.store');
+    Route::put('/servicedecanter01/update/{id}', [ServiceDecanter01Controller::class, 'update'])
+        ->name('service.update');
 
-// Riwayat service Decanter01
-Route::get('/riwayatSERVICEdecanter01', [ServiceDecanter01Controller::class, 'riwayat'])
-    ->name('servicedecanter01.riwayat');
-
-// Tambah data service (form input)
-Route::get('/servicedecanter01', [ServiceDecanter01Controller::class, 'index'])
-    ->name('service.index');
-Route::post('/servicedecanter01', [ServiceDecanter01Controller::class, 'store'])
-    ->name('service.store');
-
-// Edit & Update data service
-Route::get('/servicedecanter01/edit/{id}', [ServiceDecanter01Controller::class, 'edit'])
-    ->name('service.edit');
-Route::put('/servicedecanter01/update/{id}', [ServiceDecanter01Controller::class, 'update'])
-    ->name('service.update');
-
-// Hapus data service
-Route::delete('/servicedecanter01/{id}', [ServiceDecanter01Controller::class, 'destroy'])
-    ->name('service.destroy');
-
-
-/*
-|--------------------------------------------------------------------------
-| Riwayat Mesin
-|--------------------------------------------------------------------------
-*/
-Route::prefix('riwayat-mesin')->group(function () {
-
-    // Daftar Unit
-    Route::get('/', [RiwayatMesinController::class, 'daftarUnit'])
-        ->name('riwayatmesin.unit');
-
-    // Export PDF (HARUS DI ATAS)
-    Route::get('/pdf/{unit}', [RiwayatMesinController::class, 'pdf'])
-        ->name('riwayatmesin.pdf');
-
-    // Simpan Riwayat Mesin
-    Route::post('/{unit}', [RiwayatMesinController::class, 'store'])
-        ->name('riwayatmesin.store');
-
-    // Tampilkan Riwayat Mesin per Unit
-    Route::get('/{unit}', [RiwayatMesinController::class, 'index'])
-        ->name('riwayatmesin.index');
-
-    // Hapus Data
-    Route::delete('/hapus/{id}', [RiwayatMesinController::class, 'destroy'])
-        ->name('riwayatmesin.destroy');
+    Route::delete('/servicedecanter01/{id}', [ServiceDecanter01Controller::class, 'destroy'])
+        ->name('service.destroy');
 });
 
-
 /*
 |--------------------------------------------------------------------------
-| Redirect Halaman Utama
+| Redirect Root
 |--------------------------------------------------------------------------
 */
 Route::get('/', function () {
