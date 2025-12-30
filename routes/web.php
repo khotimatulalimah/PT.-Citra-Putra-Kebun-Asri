@@ -25,6 +25,7 @@ use App\Http\Controllers\EmptyBunchPressController;
 use App\Http\Controllers\IdFanBoilerController;
 use App\Http\Controllers\DataServiceController;
 use App\Http\Controllers\ServiceDecanter01Controller;
+use App\Http\Controllers\RiwayatMesinController;
 
 /*
 |--------------------------------------------------------------------------
@@ -181,9 +182,34 @@ Route::delete('/servicedecanter01/{id}', [ServiceDecanter01Controller::class, 'd
     ->name('service.destroy');
 
 
+/*
+|--------------------------------------------------------------------------
+| Riwayat Mesin
+|--------------------------------------------------------------------------
+*/
+Route::prefix('riwayat-mesin')->group(function () {
 
-    
+    // Daftar Unit
+    Route::get('/', [RiwayatMesinController::class, 'daftarUnit'])
+        ->name('riwayatmesin.unit');
+
+    // Export PDF (HARUS DI ATAS)
+    Route::get('/pdf/{unit}', [RiwayatMesinController::class, 'pdf'])
+        ->name('riwayatmesin.pdf');
+
+    // Simpan Riwayat Mesin
+    Route::post('/{unit}', [RiwayatMesinController::class, 'store'])
+        ->name('riwayatmesin.store');
+
+    // Tampilkan Riwayat Mesin per Unit
+    Route::get('/{unit}', [RiwayatMesinController::class, 'index'])
+        ->name('riwayatmesin.index');
+
+    // Hapus Data
+    Route::delete('/hapus/{id}', [RiwayatMesinController::class, 'destroy'])
+        ->name('riwayatmesin.destroy');
 });
+
 
 /*
 |--------------------------------------------------------------------------
